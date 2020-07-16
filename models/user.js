@@ -22,5 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "user",
     }
   );
+  user.associate = function (models) {
+    user.hasMany(models.todoList);
+  };
   return user;
 };

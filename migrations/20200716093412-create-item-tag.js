@@ -1,21 +1,30 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("users", {
+    return queryInterface.createTable("itemTags", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name: {
-        type: Sequelize.STRING,
-      },
-      email: {
-        type: Sequelize.STRING,
-      },
-      phone: {
+      todoItemId: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "todoItems",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+      },
+      tagId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "tags",
+          key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +37,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("users");
+    return queryInterface.dropTable("itemTags");
   },
 };
