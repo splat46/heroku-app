@@ -6,6 +6,9 @@ const PORT = 4000;
 const User = require("./models").user;
 const TodoList = require("./models").todoList;
 
+const cors = require("cors");
+app.use(cors());
+
 // install express.json() middleware to see the request body
 app.use(express.json());
 
